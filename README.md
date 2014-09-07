@@ -6,44 +6,31 @@
 
 We create a container per organization. A port is assigned per organization.
 Each container runs an ssh server. The container has a single user called `42-data`.
-This user cannot SSH into the container, but it can use to SFTP. The SFTP folder is
+This user cannot SSH into the container, it only works for SFTP. The SFTP root is
 jailed to the container folder `/sftp`.
 
-All public keys contained in `/sftp/keys` will be used for authentication. For our own
-purposes, the container will mount a volume that will contain our (42) public keys, and
-match against those. This allows us to SFTP into the container.
+The SFTP folder should contain two directories:
 
-The container's `/sftp` folder is actually available to the host via host mounts.
-The `sftp-run.sh` script sets up the host mounting. You will have to give it a root directory
-that it will use to build the mount directory structure.
+- `/sftp/data`, for data files
+- `/sftp/keys`, for public keys
 
+The `/sftp` folder is actually a volume that is shared with the host. The container's
+`/keys` directory, which contains the 42 public keys, is also shared.
 
-### Configuration
-
-Step 1) Create a folder that will contain the sftp data:
-
-```
-mkdir /home/core/sftp/data
-```
-
-The container will mount this directory under `/sftp`. When you invoke the `sftp-run.sh`
-script, it will create a subdirectory that follows: `/data/<organization>`
+We use the `AuthorizedKeysCommand` directive to get the list of authorized public keys.
+The directive calls the `/get-keys.sh` script, which concatenates the files in `/keys`
+with the ones in `/sftp/keys`.
 
 
+### Initial host configuration
 
-Step 2) Create a folder that will contain the 42 public keys:
+#### Creating folders
 
 ```
-mkdir /home/core/sftp/keys
+mkdir -p /home/core/sftp/{data, keys}
 ```
 
-The container will mount this directory under `/keys`, and will validate against
-all the files contained in this directory. Keys in here will allow you to log into
-every sftp containers.
-
-
-
-### Building the docker image
+#### Building the docker image
 
 ```
 docker build -t 42technologies/sftp .
@@ -56,7 +43,7 @@ Let's create an sftp container for organization `jacobmarks` that will
 run on port `1000`:
 
 ```
-./sftp-run.sh /home/core jacobmarks 10000
+./sftp-run.sh /home/core/sftp jacobmarks 10000
 ```
 
 This creates a container that exposes it's SSH server via port `10000`. You
@@ -66,9 +53,9 @@ SFTP into the server by using `42-data` as the username, and port `10000`.
 ### Creating temporary containers, for testing
 
 ```
-docker run -i -t -p \
-1234:22 \
--v /home/core/keys:/keys \
+docker run -i -t \
+-p <port>:22 \
+-v /home/core/sftp/keys:/keys \
 42technologies/sftp bash
 ```
 
