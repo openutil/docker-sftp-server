@@ -1,8 +1,8 @@
 
-# SFTP
+# SFTP Server
 
 
-# How does this work?
+### How does this work?
 
 We create a container per organization. A port is assigned per organization.
 Each container runs an ssh server. The container has a single user called `42-data`.
@@ -18,7 +18,7 @@ The `sftp-run.sh` script sets up the host mounting. You will have to give it a r
 that it will use to build the mount directory structure.
 
 
-# Configuration
+### Configuration
 
 1. Create a folder that will contain the sftp data:
 
@@ -42,14 +42,14 @@ all the files contained in this directory.
 
 
 
-# Building the docker image
+### Building the docker image
 
 ```
 docker build -t 42technologies/sftp .
 ```
 
 
-# Creating docker containers
+### Creating docker containers
 
 Let's create an sftp container for organization `jacobmarks` that will
 run on port `1000`:
@@ -62,9 +62,35 @@ This creates a container that exposes it's SSH server via port `10000`. You
 SFTP into the server by using `42-data` as the username, and port `10000`.
 
 
-# Connecting to the SFTP server
+### Creating temporary containers, for testing
+
+```
+docker run -i -t -p \
+1234:22 \
+-v /home/core/keys:/keys \
+42technologies/sftp bash
+```
+
+That should give you a shell with the sftp environment. To run SSHD in debug mode, do this:
+
+```
+/usr/sbin/sshd -d
+```
+
+
+### Connecting to the SFTP server
 
 On some random machine, you can connect to the SFTP server by doing:
 
 ```
+sftp -i <private key> -P <port> 42-data@<host>
+```
+
+
+### Generating a key pair
+
+Just as a reference, here's how you can generate keys using `ssh-keygen`:
+
+```
+ssh-keygen -b 4096
 ```
