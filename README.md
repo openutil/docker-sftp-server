@@ -20,7 +20,7 @@ that it will use to build the mount directory structure.
 
 ### Configuration
 
-1. Create a folder that will contain the sftp data:
+Step 1) Create a folder that will contain the sftp data:
 
 ```
 mkdir /home/core/sftp/data
@@ -31,14 +31,15 @@ script, it will create a subdirectory that follows: `/data/<organization>`
 
 
 
-2. Create a folder that will contain the 42 public keys:
+Step 2) Create a folder that will contain the 42 public keys:
 
 ```
 mkdir /home/core/sftp/keys
 ```
 
 The container will mount this directory under `/keys`, and will validate against
-all the files contained in this directory.
+all the files contained in this directory. Keys in here will allow you to log into
+every sftp containers.
 
 
 
