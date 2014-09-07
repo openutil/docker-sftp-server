@@ -1,0 +1,14 @@
+
+# npm
+npm-debug.log
+node_modules/
+
+# sublime
+*.sublime-project
+*.sublime-workspace
+
+# OSX
+.DS_Store
+*.swp
+*.lock
+profile
