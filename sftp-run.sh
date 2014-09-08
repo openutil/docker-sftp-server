@@ -26,6 +26,7 @@ docker rm   sftp.$organization 2> /dev/null
 
 docker run -d \
 -p $port:22 \
+-v /etc \
 -v $root/data/$organization:/sftp \
 -v $root/keys:/keys \
 --name sftp.$organization \

@@ -14,6 +14,7 @@ ADD ./data/readme.txt  /sftp/readme.txt
 RUN chmod +x /sftp.sh
 RUN chmod +x /get-keys.sh
 
+VOLUME /etc
 VOLUME /sftp
 VOLUME /config
 
