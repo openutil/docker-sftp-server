@@ -11,8 +11,6 @@ function usage {
   exit -1
 }
 
-scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 root=$1
 organization=$2
 port=$3
@@ -22,7 +20,6 @@ port=$3
 [[ -z $port ]]         && usage 'missing port argument'
 
 mkdir -p $root/data/$organization
-sudo cp $scriptdir/data/readme.txt $root/data/$organization
 
 docker stop sftp.$organization 2> /dev/null
 docker rm   sftp.$organization 2> /dev/null
