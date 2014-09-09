@@ -52,6 +52,9 @@ run on port `10000`:
 This creates a container that exposes it's SSH server via port `10000`. You
 SFTP into the server by using `42-data` as the username, and port `10000`.
 
+The `sftp-run.sh` script will create the directory `<root>/data/jacobmarks`.
+That folder will contain the folders/files in the container's `/sftp` directory.
+
 
 ### Creating temporary containers, for testing
 
