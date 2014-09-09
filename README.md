@@ -43,7 +43,7 @@ docker build -t 42technologies/sftp .
 ### Creating docker containers
 
 Let's create an sftp container for organization `jacobmarks` that will
-run on port `1000`:
+run on port `10000`:
 
 ```
 ./sftp-run.sh /home/core/sftp jacobmarks 10000
