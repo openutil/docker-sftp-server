@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+MAINTAINER Nicolas Porter <nick@42technologies.com>
+
 RUN apt-get update && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN groupadd sftpusers
