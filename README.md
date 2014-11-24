@@ -1,5 +1,7 @@
 
-# SFTP Server
+# Docker SFTP Server
+
+This dockerfile will allow you to spawn SFTP servers. The data saved in the SFTP servers can be accessed from the host. Authentication can be set up so that you can login to all servers while your customers can only access their own. Each server contains one user, and runs on a specific port. 
 
 ### Quickstart
 
@@ -35,6 +37,7 @@ docker build -t 42technologies/sftp docker-sftp-server
 sftp -i ./sftp/sftp.key -P 9000 42-data@localhost
 ```
 
+---
 
 ### Detailed Installation Instructions
 
