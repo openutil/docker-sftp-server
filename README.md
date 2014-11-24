@@ -1,7 +1,13 @@
 
 # Docker SFTP Server
 
-This dockerfile will allow you to spawn SFTP servers. The data saved in the SFTP servers can be accessed from the host. Authentication can be set up so that you can login to all servers while your customers can only access their own. Each server contains one user, and runs on a specific port. 
+This dockerfile will allow you to create many SFTP servers. The data saved in the SFTP servers can be accessed from the host.
+
+Authentication can be set up so that:
+
+- You can log into all servers.
+- Your customers can only log into their server.
+
 
 ### Quickstart
 
