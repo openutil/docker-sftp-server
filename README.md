@@ -1,12 +1,18 @@
 
 # Docker SFTP Server
 
+<br>
+![crate image](http://i.imgur.com/ejbjGOS.png)
+<br> 
+
 This dockerfile will allow you to create many SFTP servers. The data saved in the SFTP servers can be accessed from the host.
 
 Authentication can be set up so that:
 
 - You can log into all servers.
 - Your customers can only log into their server.
+
+
 
 
 ### Quickstart
