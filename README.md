@@ -53,7 +53,7 @@ ls ./sftp/data/jacobmarks/data
 ```
 
 Note that if you decide to install this stuff in a directory other than
-`/opt`, you'll modify the command parameters accordingly.
+`/opt`, you'll need to modify the command parameters accordingly.
 
 ---
 
