@@ -3,11 +3,21 @@
 set -e
 set -o xtrace
 
-mkdir -p /sftp/data
-mkdir -p /sftp/keys
+SFTP_ROOT=/sftp
+SFTP_LOG=/var/log/syslog
 
-chown -R 42-data:sftpusers /sftp
-chown root:sftpusers /sftp
-chmod -R 750 /sftp
+mkdir -p $SFTP_ROOT/data
+mkdir -p $SFTP_ROOT/keys
+
+chown -R 42-data:sftpusers $SFTP_ROOT
+chown root:sftpusers $SFTP_ROOT
+chmod -R 750 $SFTP_ROOT
+
+mkdir -p $SFTP_ROOT/dev
+
+( umask 0 && truncate -s0 $SFTP_LOG )
+tail --pid $$ -n0 -F $SFTP_LOG &
+
+/usr/sbin/rsyslogd
 
 exec /usr/sbin/sshd -D
