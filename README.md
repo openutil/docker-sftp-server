@@ -107,7 +107,7 @@ the following directories (in the container):
 Both of these directories will not be deleteable by the sftp user. 
 
 
-#### 4. Authentication
+#### 5. Authentication
 
 ##### a) Global Login
 
@@ -126,7 +126,7 @@ If you want to use password-based authentication, you can use the `sftp-passwd.s
 ./sftp-passwd.sh <root> <organization>
 ```
 
-#### 5. Connecting to the SFTP server
+#### 6. Connecting to the SFTP server
 
 On some random machine, you can connect to the SFTP server by doing:
 
@@ -136,9 +136,9 @@ sftp -i <private key> -P <port> 42-data@<host>
 
 Note that the private key is not necessary if you have set a password.
 
-#### 6. ????
+#### 7. ????
 
-#### 7. PROFIT
+#### 8. PROFIT
 
 
 ## Inside the SFTP server
