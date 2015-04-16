@@ -9,7 +9,7 @@ SFTP_LOG=/var/log/syslog
 mkdir -p $SFTP_ROOT/data
 mkdir -p $SFTP_ROOT/keys
 
-chown -R 42-data:sftpusers $SFTP_ROOT
+chown -R data:sftpusers $SFTP_ROOT
 chown root:sftpusers $SFTP_ROOT
 chmod -R 750 $SFTP_ROOT
 

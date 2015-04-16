@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 RUN apt-get update && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN groupadd sftpusers
-RUN useradd --shell /sbin/nologin --home-dir /sftp --no-create-home -G sftpusers 42-data
+RUN useradd --shell /sbin/nologin --home-dir /sftp --no-create-home -G sftpusers data
 RUN mkdir -p /sftp
 
 ADD ./data/sshd_config /etc/ssh/sshd_config
