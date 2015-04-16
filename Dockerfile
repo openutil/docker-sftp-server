@@ -1,9 +1,5 @@
 FROM ubuntu:14.04
 
-MAINTAINER Nicolas Porter <nick@42technologies.com>
-
-# RUN sed -i 's/trusty/vivid/g' /etc/apt/sources.list
-# RUN echo nameserver 8.8.8.8 > /etc/resolv.conf
 RUN apt-get update && apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN groupadd sftpusers

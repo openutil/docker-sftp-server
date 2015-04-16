@@ -1,9 +1,7 @@
 
 # Docker SFTP Server
 
-<br>
-![crate image](http://i.imgur.com/ejbjGOS.png)
-<br> 
+Based on https://github.com/42technologies/docker-sftp-server.
 
 This dockerfile will allow you to create many SFTP servers. The data saved in the SFTP servers can be accessed from the host.
 
@@ -22,7 +20,7 @@ On your host machine:
 ```bash
 # cloning this repository (the folder can be anything)
 cd /opt
-git clone https://github.com/42technologies/docker-sftp-server.git
+git clone https://github.com/openutil/docker-sftp-server.git
 
 # making initial directory structure
 # - "data" directory will hold the data from sftp servers
@@ -34,7 +32,7 @@ ssh-keygen -b 4096 -f ./sftp/sftp.key -q -N ""
 cp ./sftp/sftp.key.pub ./sftp/keys
 
 # building the docker image
-docker build -t 42technologies/sftp docker-sftp-server
+docker build -t openutil/sftp docker-sftp-server
 
 # running the sftp server
 ./docker-sftp-server/sftp-run.sh /opt/sftp jacobmarks 9000
@@ -63,7 +61,7 @@ Note that if you decide to install this stuff in a directory other than
 
 ```
 cd /opt
-git clone https://github.com/42technologies/docker-sftp-server.git
+git clone https://github.com/openutil/docker-sftp-server.git
 ```
 
 #### 2. Create initial folder structure
@@ -81,11 +79,11 @@ In the scripts, there is mention of a `<root>` argument. In this example, the `<
 #### 3. Build the docker image
 
 ```
-docker build -t 42technologies/sftp docker-sftp-server
+docker build -t openutil/sftp docker-sftp-server
 ```
 
 
-#### 4. Create an SFTP server for an organization 
+#### 4. Create an SFTP server for an organization
 
 Let's create an sftp container for organization `jacobmarks` that will run on port `10000`:
 
@@ -104,7 +102,7 @@ the following directories (in the container):
 - `/sftp/keys` which should contain org-level login public keys (maps to `<root>/data/jacobmarks/keys` in the host)
 - `/sftp/data` which should contain the sftp data (maps to `<root>/data/jacobmarks/data` in the host)
 
-Both of these directories will not be deleteable by the sftp user. 
+Both of these directories will not be deleteable by the sftp user.
 
 
 #### 5. Authentication
@@ -161,7 +159,7 @@ We configured SSHD to use the `AuthorizedKeysCommand` directive, which allows us
 to fetch the list of authorized public keys.
 
 When a login attempt is made, `AuthrorizedKeysCommand` runs a script that concatenate all the public
-keys in the `/keys` directory (global login) with the ones in `/sftp/keys` (org-level login). 
+keys in the `/keys` directory (global login) with the ones in `/sftp/keys` (org-level login).
 
 
 
@@ -181,7 +179,7 @@ docker run -it \
 -p <port>:22 \
 -v /etc \
 -v /home/core/sftp/keys:/keys \
-42technologies/sftp bash
+openutil/sftp bash
 ```
 
 That should give you a shell with the sftp environment. To run SSHD in debug mode, do this:

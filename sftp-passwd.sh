@@ -23,5 +23,5 @@ ls $root/data/$organization > /dev/null
 
 docker run -it \
 --volumes-from sftp.$organization \
-42technologies/sftp \
+openutil/sftp \
 passwd 42-data

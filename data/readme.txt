@@ -1,14 +1,4 @@
 
-42 technologies - sftp readme
-
-
-For questions/support, please contact:
-
-    nick@42technologies.com
-    1-855-934-4242
-
-
-
 For every data dump, please create a subfolder in /data that is named to the
 current ISO timestamp.
 
